@@ -6,33 +6,50 @@ export async function GET(request: NextRequest) {
   const q = searchParams.get('q');
 
   try {
-    const resourceId = '02b67492-5243-44e8-8dd1-0cb3f90f35ff';
+    const kaliResourceId = '02b67492-5243-44e8-8dd1-0cb3f90f35ff';
+    const rows: any[] = [];
     
-    // We query the Tabular API of the KALI list directly
     const results = await mcpClient.callDataGouv('query_resource_data', { 
-      resource_id: resourceId,
-      question: q ? `Rechercher ${q}` : 'Liste des conventions collectives',
-      page_size: 50
+      resource_id: kaliResourceId,
+      question: 'Liste les 100 premières lignes',
+      page_size: 100
     });
 
-    if (!results || !results.rows) {
-      return NextResponse.json([]);
+    const text = results.structuredContent?.result || results.content?.[0]?.text || '';
+    const rowBlocks = text.split(/Row \d+:/g);
+    
+    for (const block of rowBlocks) {
+      // Find the IDCC (usually Unnamed: 3)
+      const idccMatch = block.match(/Unnamed: 3:\s+(\d+)/);
+      // Find the Title (usually Unnamed: 4)
+      const nameMatch = block.match(/Unnamed: 4:\s+([^\n]+)/);
+      // Find the ID (usually Unnamed: 1)
+      const idMatch = block.match(/Unnamed: 1:\s+(KALICONT\w+)/);
+
+      if (nameMatch && idMatch) {
+        const name = nameMatch[1].trim();
+        const idcc = idccMatch ? idccMatch[1] : '----';
+        const id = idMatch[1];
+
+        // Search logic
+        if (q) {
+          const lq = q.toLowerCase();
+          if (!name.toLowerCase().includes(lq) && !idcc.toLowerCase().includes(lq)) {
+            continue;
+          }
+        }
+
+        rows.push({
+          idcc,
+          name,
+          id,
+          organization: 'DILA / KALI'
+        });
+      }
     }
 
-    // Map KALI columns to our interface
-    // KALI format: Unnamed: 3 is IDCC, Unnamed: 4 is TITRE
-    const formattedResults = results.rows
-      .filter((row: any) => row['Unnamed: 4'] && row['Unnamed: 4'] !== 'TITRE') // Filter header/empty
-      .map((row: any) => ({
-        idcc: row['Unnamed: 3'] || 'N/A',
-        name: row['Unnamed: 4'],
-        id: row['Unnamed: 1'],
-        organization: 'DILA / KALI'
-      }));
-
-    return NextResponse.json(formattedResults);
+    return NextResponse.json(rows);
   } catch (error) {
-    console.error('API Route Error:', error);
-    return NextResponse.json({ error: 'Failed to fetch from MCP' }, { status: 500 });
+    return NextResponse.json([]);
   }
 }

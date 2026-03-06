@@ -3,8 +3,49 @@
 - Network:       http://127.0.0.1:3003
 
 ✓ Starting...
-✓ Ready in 882ms
- GET / 200 in 734ms (compile: 559ms, render: 175ms)
+✓ Ready in 914ms
+ HEAD / 200 in 789ms (compile: 663ms, render: 127ms)
+ GET / 200 in 67ms (compile: 7ms, render: 60ms)
 ⚠ Cross origin request detected from stop-dog-pdt-rrp.trycloudflare.com to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
 Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
-✓ Compiled in 49ms
+ GET /api/search 200 in 727ms (compile: 78ms, render: 649ms)
+ GET /api/search 200 in 496ms (compile: 3ms, render: 493ms)
+ GET /api/search?q=3248 200 in 908ms (compile: 4ms, render: 904ms)
+✓ Compiled in 40ms
+ GET /api/search 200 in 641ms (compile: 28ms, render: 613ms)
+ GET /api/search 200 in 352ms (compile: 24ms, render: 328ms)
+ GET /api/search 200 in 596ms (compile: 22ms, render: 575ms)
+ GET /api/search 200 in 450ms (compile: 43ms, render: 407ms)
+ GET / 200 in 83ms (compile: 6ms, render: 76ms)
+ GET /api/search 200 in 1034ms (compile: 4ms, render: 1030ms)
+ GET /api/search?q=489 200 in 453ms (compile: 3ms, render: 450ms)
+✓ Compiled in 27ms
+✓ Compiled in 334ms
+ GET / 200 in 120ms (compile: 57ms, render: 63ms)
+ GET / 200 in 23ms (compile: 3ms, render: 21ms)
+ GET / 200 in 31ms (compile: 12ms, render: 19ms)
+ GET / 200 in 20ms (compile: 2ms, render: 18ms)
+ GET / 200 in 22ms (compile: 2ms, render: 20ms)
+ GET / 200 in 16ms (compile: 1968µs, render: 14ms)
+ GET / 200 in 22ms (compile: 2ms, render: 20ms)
+ GET / 200 in 21ms (compile: 1751µs, render: 20ms)
+ GET / 200 in 16ms (compile: 3ms, render: 13ms)
+ GET / 200 in 19ms (compile: 1912µs, render: 17ms)
+✓ Compiled in 57ms
+ GET / 200 in 109ms (compile: 64ms, render: 45ms)
+ GET / 200 in 24ms (compile: 4ms, render: 20ms)
+ GET / 200 in 17ms (compile: 2ms, render: 15ms)
+ GET / 200 in 20ms (compile: 3ms, render: 17ms)
+ GET / 200 in 27ms (compile: 3ms, render: 24ms)
+ GET / 200 in 26ms (compile: 3ms, render: 23ms)
+ GET / 200 in 22ms (compile: 3ms, render: 19ms)
+ GET / 200 in 21ms (compile: 2ms, render: 19ms)
+ GET / 200 in 16ms (compile: 1800µs, render: 15ms)
+ GET / 200 in 16ms (compile: 1941µs, render: 14ms)
+ GET / 200 in 24ms (compile: 3ms, render: 21ms)
+ GET / 200 in 18ms (compile: 3ms, render: 15ms)
+ GET / 200 in 91ms (compile: 3ms, render: 88ms)
+ GET /api/search 200 in 543ms (compile: 38ms, render: 504ms)
+ GET /conventions/KALICONT000046993250 200 in 1330ms (compile: 1282ms, render: 48ms)
+ GET /api/conventions/KALICONT000046993250 200 in 1379ms (compile: 850ms, render: 529ms)
+ GET /api/conventions/KALICONT000046993250 200 in 349ms (compile: 57ms, render: 292ms)
